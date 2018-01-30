@@ -2,5 +2,5 @@
 #include "USART.h"
 #include "Array.h"
 
-int processData(Array data);
+int processData(int data[]);
 void sendToAndroid(int numbStrikes);
