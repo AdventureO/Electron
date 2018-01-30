@@ -132,7 +132,7 @@ int processData(int dataTest[]){
 	int number = 0;
 	for(int e = 0; e < countd; e+=1){
 		printf("%d\n", deltas[e]);
-		if((deltas[e]>=max-5) && (deltas[e]<=max+5)){
+		if((deltas[e]>=max-3) && (deltas[e]<=max+3)){
 			number ++;
 		}
 	}
