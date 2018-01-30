@@ -49,28 +49,28 @@ void init_interrupts() {
 
 int main(void) {
 
-	init_ports();
-	initMotor();
+	initPorts();
+//	initMotor();
 	init_interrupts();
 	USARTInit();
-	Array distances;
-	initArray(&distances, 150);
+	int distances[100];
+	initArray(&distances, 10);
 	uint8_t dir = 1;  //motor direction
 
 
   // Set timer to count first 10us
 	TIM7->DIER |= TIM_DIER_UIE;          // allow TIM7 interrupts
-	GPIOC->ODR |= GPIO_Pin_3;            // turn on TRIG
+	GPIOC->ODR |= GPIO_ODR_3;            // turn on TRIG
 	TIM7->CR1 |= TIM_CR1_CEN;            // enable TIM7
 
 	int i = 0;
-	while(i != 120)
+	while(i != 50)
     {
 		Delay_ms(500);
 		printf("S = %d mm, %d\n", duration/29, duration);
 		insertArray(&distances, duration / 29);
 		i++;
-		if (120 % 20) {
+		if (100 % 20) {
 			if (dir){
 				turnOnMotorDown();
 				dir = 0;
@@ -80,12 +80,16 @@ int main(void) {
 			}
     	}
     }
-    turnoffMotor();
-    for (int i = 0; i < 6; i++) {
-    	printf("%d \n", distances.array[i]);
-    }
+	TIM7->DIER &= ~TIM_DIER_UIE;
+	TIM6->DIER &= ~TIM_DIER_UIE;
 
-    sendToAndroid(processData(distances));
+//    turnoffMotor();
+	sendToAndroid(processData(distances));
+//	while (1){
+////		sendToAndroid(15);
+//		USARTSendString("15");
+//	}
+	freeArray(&distances);
 }
 
 
