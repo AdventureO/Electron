@@ -1,0 +1,19 @@
+{% extends 'electron/base.html' %}
+<title>{% block title %}Машини{% endblock %}</title>
+{% block body %}
+
+<body>
+    <header class="header">
+        <img src="/static/electron/images/logo.png" alt="" class="header__logo">
+        <div class="header__info">
+            <h2 class="header__title">Машини</h2>
+        </div>
+    </header>
+    <div class="list">
+		{% for machine in all_machines %}
+			<a href="{% url 'stamps' machine.id %}" class="list__elem">{{ machine.name }}</a>
+		{% endfor %}
+	</div>
+</body>
+
+{%  endblock %}

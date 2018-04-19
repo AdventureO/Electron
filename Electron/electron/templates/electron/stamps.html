@@ -1,0 +1,20 @@
+{% extends 'electron/base.html' %}
+<title>{% block title %}Штампи{% endblock %}</title>
+{% block body %}
+
+<body>
+    <header class="header">
+        <img src="/static/electron/images/logo.png" alt="" class="header__logo">
+        <div class="header__info">
+            <input type=button value="&#8592; Назад" onClick="javascript:history.back();" class="header__back-button">
+            <h2 class="header__title">Штампи машини {{ machine.name }}</h2>
+        </div>
+    </header>
+    <div class="list">
+		{% for stamp in machine.stamp_set.all %}
+            <a href="{% url 'work_cycles'  machine.id stamp.id %}" class="list__elem">{{ stamp.name }}</a>
+        {% endfor %}
+	</div>
+</body>
+
+{%  endblock %}

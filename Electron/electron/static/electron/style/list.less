@@ -1,0 +1,31 @@
+.list {
+  margin: 0;
+  padding: 0;
+
+  &__elem {
+      cursor: pointer;
+      position: relative;
+      padding: 20px 0 20px 0;
+      list-style-type: none;
+      background: #eee;
+      font-size: 18px;
+      transition: 0.2s;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+    color: #416607;
+  }
+
+  &__elem:nth-child(odd) {
+      background: #f9f9f9;
+  }
+
+  &__elem:hover {
+      background: #71B20C;
+      color: white;
+  }
+
+  &__info {
+      font-weight: bold;
+  }
+}

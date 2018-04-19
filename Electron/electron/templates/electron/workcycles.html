@@ -1,0 +1,21 @@
+{% extends 'electron/base.html' %}
+<title>{% block title %}Робочі цикли{% endblock %}</title>
+{% block body %}
+
+<body>
+    <header class="header">
+        <img src="/static/electron/images/logo.png" alt="" class="header__logo">
+        <div class="header__info">
+            <input type=button value="&#8592; Назад" onClick="javascript:history.go(-1);" class="header__back-button">
+            <h2 class="header__title">Робочі цикли штампу {{ stamp.name }}</h2>
+        </div>
+    </header>
+    <div class="list">
+        {% for work_cycle in stamp.workcycle_set.all %}
+            <a class="list__elem">Дата: <span class="list__info">{{ work_cycle.date }}</span>
+                <br>Кількість ударів: <span class="list__info">{{ work_cycle.strikes_number }}</span></a>
+        {% endfor %}
+	</div>
+</body>
+
+{%  endblock %}
